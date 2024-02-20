@@ -4,9 +4,14 @@ import 'package:news_app/feature/home/screen/home_screen.dart';
 import 'package:news_app/theme/custom_theme.dart';
 import 'package:news_app/theme/theme_provider.dart';
 import 'package:news_app/core/utils/shared_utility.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   SharedUtility.ensureInitalize();
   runApp(
     const ProviderScope(
