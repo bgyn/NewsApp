@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/feature/home/screen/home_screen.dart';
+import 'package:news_app/route.dart';
 import 'package:news_app/theme/custom_theme.dart';
 import 'package:news_app/theme/theme_provider.dart';
 import 'package:news_app/core/utils/shared_utility.dart';
@@ -25,10 +25,10 @@ class MyApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return MaterialApp(
+    return MaterialApp.router(
       title: 'Khabar',
       theme: getAppTheme(context, ref.watch(themeNotifierProvider)),
-      home: const HomeScreen(),
+      routerConfig: router,
     );
   }
 }
