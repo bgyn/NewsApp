@@ -12,7 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  SharedUtility.ensureInitalize();
+  await SharedUtility.ensureInitalize();
   runApp(
     const ProviderScope(
       child: MyApp(),
@@ -26,9 +26,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       title: 'Khabar',
       theme: getAppTheme(context, ref.watch(themeNotifierProvider)),
-      routerConfig: router,
+      routeInformationParser: router.routeInformationParser,
+      routeInformationProvider: router.routeInformationProvider,
+      routerDelegate: router.routerDelegate,
     );
   }
 }
