@@ -21,13 +21,25 @@ class SharedUtility {
   }
 
   static const _themeKey = 'theme';
+  static const _initScreen = 'initscreen';
 
   bool themeMode() {
     final themeValue = _prefs!.getBool(_themeKey);
     if (themeValue == null) return false;
     return themeValue;
   }
+
   Future<void> setThemeMode(bool themeValue) async {
     await _prefs!.setBool(_themeKey, themeValue);
+  }
+
+  bool isFirstTime() {
+    final isFirst = _prefs!.getBool(_initScreen);
+    if (isFirst == null) return true;
+    return isFirst;
+  }
+
+  Future<void> setIsFirstTime() async {
+    await _prefs!.setBool(_initScreen, false);
   }
 }
