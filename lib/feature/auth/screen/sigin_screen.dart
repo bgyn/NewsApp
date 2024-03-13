@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/core/common/custom_textfield.dart';
 import 'package:news_app/core/utils/shared_utility.dart';
+import 'package:news_app/feature/auth/widgets/custom_button.dart';
 import 'package:news_app/feature/auth/widgets/required_text.dart';
 import 'package:news_app/theme/custom_theme.dart';
 
-class SiginScreen extends ConsumerWidget {
-  SiginScreen({super.key});
+class SigninScreen extends ConsumerWidget {
+  SigninScreen({super.key});
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -94,7 +95,7 @@ class SiginScreen extends ConsumerWidget {
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       shape: ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(10),
                       ),
                       backgroundColor: colors(context).color1,
                     ),
@@ -123,6 +124,31 @@ class SiginScreen extends ConsumerWidget {
                 const SizedBox(
                   height: 10,
                 ),
+                CustomButton(
+                  title: 'Google',
+                  img: 'assets/images/google.png',
+                  onClick: () {},
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "don't have an account?",
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                    TextButton(
+                        onPressed: () {},
+                        child: Text(
+                          "Sign Up",
+                          style:
+                              Theme.of(context).textTheme.bodyMedium?.copyWith(
+                                    color: colors(context).color1,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                        )),
+                  ],
+                )
               ],
             ),
           ),

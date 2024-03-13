@@ -31,7 +31,7 @@ final GoRouter router = GoRouter(
     GoRoute(
       path: '/sigin',
       builder: (context, state) {
-        return SiginScreen();
+        return SigninScreen();
       },
     ),
   ],
