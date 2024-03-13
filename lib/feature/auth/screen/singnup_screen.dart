@@ -7,14 +7,14 @@ import 'package:news_app/feature/auth/widgets/custom_button.dart';
 import 'package:news_app/feature/auth/widgets/required_text.dart';
 import 'package:news_app/theme/custom_theme.dart';
 
-class SigninScreen extends ConsumerWidget {
-  SigninScreen({super.key});
+class SignupScreen extends ConsumerWidget {
+  SignupScreen({super.key});
 
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void navigateToSignUp(BuildContext context) {
-    GoRouter.of(context).pushReplacement('/signup');
+  void navigateToSignIn(BuildContext context) {
+    GoRouter.of(context).pushReplacement('/sigin');
   }
 
   @override
@@ -30,13 +30,6 @@ class SigninScreen extends ConsumerWidget {
               children: [
                 Text(
                   'Hello',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Again!',
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge
@@ -46,7 +39,7 @@ class SigninScreen extends ConsumerWidget {
                   height: 10,
                 ),
                 Text(
-                  "Welcome back you've\nbeen missed",
+                  "Signup to get started",
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       color: Colors.grey,
                       fontSize: 20,
@@ -138,13 +131,13 @@ class SigninScreen extends ConsumerWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "don't have an account?",
+                      "Already have an account?",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     TextButton(
-                      onPressed: () => navigateToSignUp(context),
+                      onPressed: () => navigateToSignIn(context),
                       child: Text(
-                        "Sign Up",
+                        "Login",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                               color: colors(context).color1,
                               fontSize: 14,
