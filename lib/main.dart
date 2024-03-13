@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/route.dart';
+import 'package:news_app/app_route/route.dart';
 import 'package:news_app/theme/custom_theme.dart';
 import 'package:news_app/theme/theme_provider.dart';
 import 'package:news_app/core/utils/shared_utility.dart';

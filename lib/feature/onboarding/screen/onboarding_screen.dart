@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/constants/onboarding_constant.dart';
+import 'package:news_app/core/utils/shared_utility.dart';
 import 'package:news_app/feature/onboarding/widget/doted_indicator.dart';
 import 'package:news_app/theme/custom_theme.dart';
 
@@ -12,17 +13,17 @@ class OnboardingScreen extends StatefulWidget {
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
-  late final String image1;
-  late final String image2;
-  late final String image3;
+  late final Image image1;
+  late final Image image2;
+  late final Image image3;
   final _pageController = PageController(initialPage: 0);
   int currentIndex = 0;
   @override
   void initState() {
-    image1 = OnBoarding.onboardingPages[0]['image']!;
-    image2 = OnBoarding.onboardingPages[1]['image']!;
-    image3 = OnBoarding.onboardingPages[2]['image']!;
     super.initState();
+    image1 = Image.asset(OnBoarding.onboardingPages[0]['image']!);
+    image2 = Image.asset(OnBoarding.onboardingPages[1]['image']!);
+    image3 = Image.asset(OnBoarding.onboardingPages[2]['image']!);
   }
 
   @override
@@ -34,14 +35,13 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(AssetImage(image1), context);
-    precacheImage(AssetImage(image2), context);
-    precacheImage(AssetImage(image3), context);
+    precacheImage(image1.image, context);
+    precacheImage(image2.image, context);
+    precacheImage(image3.image, context);
   }
 
   @override
   Widget build(BuildContext context) {
-    final images = [image1, image2, image3];
     final height = MediaQuery.of(context).size.height * 1;
     final width = MediaQuery.of(context).size.width * 1;
     return Scaffold(
@@ -63,7 +63,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   Image.asset(
                     height: height * 0.7,
                     width: width,
-                    images[index],
+                    OnBoarding.onboardingPages[index]['image'].toString(),
                     fit: BoxFit.cover,
                   ),
                   Padding(
@@ -141,7 +141,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             );
                           });
                         } else {
-                          GoRouter.of(context).pushReplacement('/');
+                          SharedUtility().setIsFirstTime();
+                          GoRouter.of(context).pushReplacement('/sigin');
                         }
                       },
                       child: Text(

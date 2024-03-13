@@ -51,6 +51,11 @@ ThemeData getAppTheme(BuildContext context, bool isDarkTheme) {
         fontWeight: FontWeight.w400,
         color: Colors.white,
       ),
+      labelSmall: TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        color: isDarkTheme ? Colors.white : Colors.black,
+      ),
     ),
   );
 }
