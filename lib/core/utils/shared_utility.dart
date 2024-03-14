@@ -35,14 +35,14 @@ class SharedUtility {
     await _prefs!.setBool(_themeKey, themeValue);
   }
 
-  bool isFirstTime() {
+  bool getOnBoarding() {
     final isFirst = _prefs!.getBool(_initScreen);
-    if (isFirst == null) return true;
+    if (isFirst == null) return false;
     return isFirst;
   }
 
-  Future<void> setIsFirstTime() async {
-    await _prefs!.setBool(_initScreen, false);
+  Future<void> setOnBoarding() async {
+    await _prefs!.setBool(_initScreen, true);
   }
 
   bool rememberMe() {

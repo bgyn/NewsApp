@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/common/custom_textfield.dart';
 import 'package:news_app/core/utils/shared_utility.dart';
+import 'package:news_app/feature/auth/controller/auth_controller.dart';
 import 'package:news_app/feature/auth/widgets/custom_button.dart';
 import 'package:news_app/feature/auth/widgets/required_text.dart';
 import 'package:news_app/theme/custom_theme.dart';
@@ -97,7 +98,12 @@ class SignupScreen extends ConsumerWidget {
                       ),
                       backgroundColor: colors(context).color1,
                     ),
-                    onPressed: () {},
+                    onPressed: () => ref
+                        .read(authControllerProvider.notifier)
+                        .signUpWithEmailPassword(
+                          email: _emailController.text,
+                          password: _passwordController.text,
+                        ),
                     child: Text(
                       "Login",
                       style: Theme.of(context)
@@ -125,7 +131,9 @@ class SignupScreen extends ConsumerWidget {
                 CustomButton(
                   title: 'Google',
                   img: 'assets/images/google.png',
-                  onClick: () {},
+                  onClick: ref
+                      .read(authControllerProvider.notifier)
+                      .signInWithGoogle,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

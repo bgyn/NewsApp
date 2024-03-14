@@ -4,6 +4,27 @@ import 'package:news_app/core/common/custom_snackbar.dart';
 import 'package:news_app/feature/auth/repository/auth_repository.dart';
 import 'package:news_app/model/user_model.dart';
 
+final authControllerProvider = StateNotifierProvider(
+  (ref) => AuthController(
+      authRepository: ref.read(authRepositoryProvider), ref: ref),
+);
+
+final authStateChangeProvider = StreamProvider((ref) {
+  final authController = ref.read(authControllerProvider.notifier);
+  return authController.authStateChanges;
+});
+
+final getCurrentUserInfoProvider = FutureProvider((ref) {
+  final authController = ref.read(authControllerProvider.notifier);
+  return authController.getCurrentUserInfo();
+});
+
+final getUserInfoProvider = StreamProvider.family((ref, String uid) {
+  final authController = ref.read(authControllerProvider.notifier);
+  return authController.getUserInfo(uid);
+});
+
+
 final userProvider = StateProvider<UserModel?>((ref) => null);
 
 class AuthController extends StateNotifier<bool> {
@@ -56,6 +77,10 @@ class AuthController extends StateNotifier<bool> {
   }
 
   void logOut() {
-     _authRepository.logOut();
+    _authRepository.logOut();
+  }
+
+  Stream<UserModel?> getUserInfo(String uid) {
+    return _authRepository.getUserData(uid);
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:news_app/core/utils/shared_utility.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -13,8 +14,13 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    final onBoarding = SharedUtility().getOnBoarding();
     Timer(const Duration(seconds: 3), () {
-      GoRouter.of(context).pushReplacement('/onboarding');
+      if (onBoarding) {
+        GoRouter.of(context).pushReplacement('/sigin');
+      } else {
+        GoRouter.of(context).pushReplacement('/onboarding');
+      }
     });
   }
 

@@ -141,7 +141,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                             );
                           });
                         } else {
-                          SharedUtility().setIsFirstTime();
+                          SharedUtility().setOnBoarding();
                           GoRouter.of(context).pushReplacement('/sigin');
                         }
                       },
