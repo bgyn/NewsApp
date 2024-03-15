@@ -67,8 +67,9 @@ class AuthRepository {
         userModel = UserModel(
           uid: userCredential.user!.uid,
           userName: userCredential.user?.displayName ?? '',
-          fullName: userCredential.user?.photoURL ?? '',
+          fullName: userCredential.user?.displayName ?? '',
           email: userCredential.user?.email ?? '',
+          profilePic: userCredential.user?.photoURL ?? '',
           followers: [],
           following: [],
         );
