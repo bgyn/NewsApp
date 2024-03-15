@@ -24,7 +24,6 @@ final getUserInfoProvider = StreamProvider.family((ref, String uid) {
   return authController.getUserInfo(uid);
 });
 
-
 final userProvider = StateProvider<UserModel?>((ref) => null);
 
 class AuthController extends StateNotifier<bool> {

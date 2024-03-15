@@ -21,151 +21,160 @@ class SigninScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     _emailController.text = SharedUtility().getEmail();
+    final isLoading = ref.watch(authControllerProvider);
     return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hello',
-                  style: Theme.of(context).textTheme.displayLarge,
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'Again!',
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayLarge
-                      ?.copyWith(color: colors(context).color1),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  "Welcome back you've\nbeen missed",
-                  style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Colors.grey,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w400),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const RequireText(text: 'Email'),
-                CustomTextField(
-                  controller: _emailController,
-                  isObscure: false,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                const RequireText(text: 'Password'),
-                CustomTextField(
-                  controller: _passwordController,
-                  isObscure: true,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Checkbox(
-                          value: true,
-                          onChanged: (value) {},
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
+      body: isLoading == true
+          ? const Center(
+              child: CircularProgressIndicator(),
+            )
+          : SafeArea(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Hello',
+                        style: Theme.of(context).textTheme.displayLarge,
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        'Again!',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayLarge
+                            ?.copyWith(color: colors(context).color1),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        "Welcome back you've\nbeen missed",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Colors.grey,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w400),
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const RequireText(text: 'Email'),
+                      CustomTextField(
+                        controller: _emailController,
+                        isObscure: false,
+                      ),
+                      const SizedBox(
+                        height: 15,
+                      ),
+                      const RequireText(text: 'Password'),
+                      CustomTextField(
+                        controller: _passwordController,
+                        isObscure: true,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Checkbox(
+                                value: true,
+                                onChanged: (value) {},
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                              ),
+                              Text(
+                                "Remember me",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall
+                                    ?.copyWith(fontSize: 14),
+                              ),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text("Forgot the password?"),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: ContinuousRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            backgroundColor: colors(context).color1,
+                          ),
+                          onPressed: () => ref
+                              .read(authControllerProvider.notifier)
+                              .signInWithEmailPassword(
+                                  email: _emailController.text,
+                                  password: _passwordController.text),
+                          child: Text(
+                            "Login",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(fontSize: 16),
+                          ),
                         ),
-                        Text(
-                          "Remember me",
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Center(
+                        child: Text(
+                          "or continue with",
                           style: Theme.of(context)
                               .textTheme
-                              .labelSmall
-                              ?.copyWith(fontSize: 14),
+                              .labelMedium
+                              ?.copyWith(color: Colors.grey),
                         ),
-                      ],
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text("Forgot the password?"),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  width: double.infinity,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      shape: ContinuousRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
                       ),
-                      backgroundColor: colors(context).color1,
-                    ),
-                    onPressed: () => ref
-                        .read(authControllerProvider.notifier)
-                        .signInWithEmailPassword(
-                            email: _emailController.text,
-                            password: _passwordController.text),
-                    child: Text(
-                      "Login",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(fontSize: 16),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Center(
-                  child: Text(
-                    "or continue with",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelMedium
-                        ?.copyWith(color: Colors.grey),
-                  ),
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
-                CustomButton(
-                  title: 'Google',
-                  img: 'assets/images/google.png',
-                  onClick: ref
-                      .read(authControllerProvider.notifier)
-                      .signInWithGoogle,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "don't have an account?",
-                      style: Theme.of(context).textTheme.bodyMedium,
-                    ),
-                    TextButton(
-                      onPressed: () => navigateToSignUp(context),
-                      child: Text(
-                        "Sign Up",
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: colors(context).color1,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      CustomButton(
+                        title: 'Google',
+                        img: 'assets/images/google.png',
+                        onClick: ref
+                            .read(authControllerProvider.notifier)
+                            .signInWithGoogle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "don't have an account?",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          TextButton(
+                            onPressed: () => navigateToSignUp(context),
+                            child: Text(
+                              "Sign Up",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                    color: colors(context).color1,
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
                             ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
             ),
-          ),
-        ),
-      ),
     );
   }
 }
