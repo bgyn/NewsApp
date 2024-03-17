@@ -7,11 +7,14 @@ import 'package:news_app/feature/auth/screen/sigin_screen.dart';
 import 'package:news_app/feature/auth/screen/singnup_screen.dart';
 import 'package:news_app/feature/home/screen/home_screen.dart';
 import 'package:news_app/feature/onboarding/screen/onboarding_screen.dart';
+import 'package:news_app/feature/root/screen/root_screen.dart';
 import 'package:news_app/feature/splash/screen/splash_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
   final router = RouterNotifier(ref: ref);
+
   return GoRouter(
+    // initialLocation: '/splash',
     debugLogDiagnostics: true,
     refreshListenable: router,
     redirect: (context, state) => router._redirectLogic(state),
@@ -43,8 +46,15 @@ class RouterNotifier extends ChangeNotifier {
 
   List<GoRoute> get _routes => [
         GoRoute(
+          path: '/',
+          name: 'root',
+          builder: (context, state) {
+            return const RootScreen();
+          },
+        ),
+        GoRoute(
           name: 'home',
-          path: "/",
+          path: "/home",
           builder: (BuildContext context, GoRouterState state) {
             return const HomeScreen();
           },
@@ -63,7 +73,7 @@ class RouterNotifier extends ChangeNotifier {
               return const OnboardingScreen();
             }),
         GoRoute(
-          name: 'Signin',
+          name: 'signin',
           path: '/sigin',
           builder: (context, state) {
             return SigninScreen();
