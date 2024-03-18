@@ -118,7 +118,7 @@ class _RootScreenState extends State<RootScreen> {
           ),
           GButton(
             icon:
-                _selectedIndex == 2 ? Icons.person_2 : Icons.person_2_outlined,
+                _selectedIndex == 3 ? Icons.person_2 : Icons.person_2_outlined,
             text: 'Profile',
           )
         ],
