@@ -17,7 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final onBoarding = SharedUtility().getOnBoarding();
     Timer(const Duration(seconds: 3), () {
       if (onBoarding) {
-        GoRouter.of(context).pushReplacement('/signup');
+        GoRouter.of(context).pushReplacement('/sigin');
       } else {
         GoRouter.of(context).pushReplacement('/onboarding');
       }

@@ -14,7 +14,7 @@ final routerProvider = Provider<GoRouter>((ref) {
   final router = RouterNotifier(ref: ref);
 
   return GoRouter(
-    // initialLocation: '/splash',
+    initialLocation: '/splash',
     debugLogDiagnostics: true,
     refreshListenable: router,
     redirect: (context, state) => router._redirectLogic(state),
