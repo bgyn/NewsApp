@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:news_app/core/constants/title_constant.dart';
 import 'package:news_app/feature/bookmark/screen/bookmark_screen.dart';
@@ -23,6 +24,11 @@ class _RootScreenState extends State<RootScreen> {
     ProfileScreen(),
   ];
   static final List<String> _title = TitleContant().title;
+
+  void navigateToSetting(BuildContext context) {
+    GoRouter.of(context).pushNamed('setting');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,15 +57,15 @@ class _RootScreenState extends State<RootScreen> {
         actions: [
           _selectedIndex == 0
               ? InkWell(
+                  onTap: () {},
                   splashColor: Colors.transparent,
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
-                  onTap: () {},
                   child: Container(
                       margin: const EdgeInsets.only(right: 10),
                       padding: const EdgeInsets.all(3),
                       decoration: BoxDecoration(
-                          color: Colors.white,
+                          color: colors(context).color4,
                           borderRadius: BorderRadius.circular(5),
                           boxShadow: [
                             BoxShadow(
@@ -67,22 +73,23 @@ class _RootScreenState extends State<RootScreen> {
                                 blurRadius: 0.5,
                                 offset: const Offset(-1, 1))
                           ]),
-                      child: const Icon(
+                      child: Icon(
                         Icons.notifications_outlined,
                         size: 22,
+                        color: colors(context).color3,
                       )),
                 )
               : _selectedIndex == 3
                   ? InkWell(
+                      onTap: () => navigateToSetting(context),
                       splashColor: Colors.transparent,
                       hoverColor: Colors.transparent,
                       highlightColor: Colors.transparent,
-                      onTap: () {},
                       child: Container(
                           margin: const EdgeInsets.only(right: 10),
                           padding: const EdgeInsets.all(3),
                           decoration: BoxDecoration(
-                              color: Colors.white,
+                              color: colors(context).color4,
                               borderRadius: BorderRadius.circular(5),
                               boxShadow: [
                                 BoxShadow(
@@ -90,9 +97,10 @@ class _RootScreenState extends State<RootScreen> {
                                     blurRadius: 0.5,
                                     offset: const Offset(-1, 1))
                               ]),
-                          child: const Icon(
+                          child: Icon(
                             Icons.settings_outlined,
                             size: 22,
+                            color: colors(context).color3,
                           )),
                     )
                   : const SizedBox(),

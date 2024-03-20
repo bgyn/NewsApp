@@ -9,7 +9,9 @@ ThemeData getAppTheme(BuildContext context, bool isDarkTheme) {
       AppColors(
         color1: isDarkTheme ? Colors.blue : Colors.blue,
         color2: isDarkTheme ? Colors.blue : Colors.blue,
-        color3: isDarkTheme ? Colors.blue : Colors.blue,
+        color3: isDarkTheme ? Colors.white : Colors.black,
+        color4:
+            isDarkTheme ? const Color.fromARGB(255, 87, 87, 87) : Colors.white,
       )
     ],
     scaffoldBackgroundColor: isDarkTheme ? Colors.black : Colors.white,
@@ -18,6 +20,9 @@ ThemeData getAppTheme(BuildContext context, bool isDarkTheme) {
     appBarTheme: AppBarTheme(
       elevation: 0,
       backgroundColor: isDarkTheme ? Colors.black : Colors.white,
+      iconTheme: IconThemeData(
+        color: isDarkTheme ? Colors.white : Colors.black,
+      ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(foregroundColor: Colors.blue),
@@ -65,11 +70,13 @@ class AppColors extends ThemeExtension<AppColors> {
   final Color? color1;
   final Color? color2;
   final Color? color3;
+  final Color? color4;
 
   const AppColors({
     required this.color1,
     required this.color2,
     required this.color3,
+    required this.color4,
   });
 
   @override
@@ -77,12 +84,13 @@ class AppColors extends ThemeExtension<AppColors> {
     Color? color1,
     Color? color2,
     Color? color3,
+    Color? color4,
   }) {
     return AppColors(
-      color1: color1 ?? this.color1,
-      color2: color2 ?? this.color2,
-      color3: color3 ?? this.color3,
-    );
+        color1: color1 ?? this.color1,
+        color2: color2 ?? this.color2,
+        color3: color3 ?? this.color3,
+        color4: color4 ?? this.color4);
   }
 
   @override
@@ -94,6 +102,7 @@ class AppColors extends ThemeExtension<AppColors> {
       color1: Color.lerp(color1, other.color1, t),
       color2: Color.lerp(color2, other.color2, t),
       color3: Color.lerp(color3, other.color3, t),
+      color4: Color.lerp(color4, other.color4, t),
     );
   }
 }

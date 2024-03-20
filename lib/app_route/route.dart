@@ -8,6 +8,7 @@ import 'package:news_app/feature/auth/screen/singnup_screen.dart';
 import 'package:news_app/feature/home/screen/home_screen.dart';
 import 'package:news_app/feature/onboarding/screen/onboarding_screen.dart';
 import 'package:news_app/feature/root/screen/root_screen.dart';
+import 'package:news_app/feature/setting/screen/setting_screen.dart';
 import 'package:news_app/feature/splash/screen/splash_screen.dart';
 
 final routerProvider = Provider<GoRouter>((ref) {
@@ -38,7 +39,7 @@ class RouterNotifier extends ChangeNotifier {
     if (authState && isLogginIn) {
       return '/';
     }
-    if (!authState && !isLogginIn) {
+    if (!authState) {
       return '/sigin';
     }
     return null;
@@ -85,6 +86,12 @@ class RouterNotifier extends ChangeNotifier {
           builder: (context, state) {
             return SignupScreen();
           },
-        )
+        ),
+        GoRoute(
+            name: 'setting',
+            path: '/profile/setting',
+            builder: (context, state) {
+              return const SettingScreen();
+            }),
       ];
 }
