@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:news_app/core/common/custom_textfield.dart';
 import 'package:news_app/core/utils/shared_utility.dart';
 import 'package:news_app/feature/auth/controller/auth_controller.dart';
-import 'package:news_app/feature/auth/widgets/custom_button.dart';
+import 'package:news_app/feature/auth/widgets/custom_icon_button.dart';
 import 'package:news_app/feature/auth/widgets/required_text.dart';
 import 'package:news_app/theme/custom_theme.dart';
 
