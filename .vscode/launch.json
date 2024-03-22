@@ -5,7 +5,10 @@
       "name": "C/C++ Runner: Debug Session",
       "type": "cppdbg",
       "request": "launch",
-      "args": [],
+      "args": [
+        "--dart-define-from-file",
+        "api_key.json"
+      ],
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": ".",
