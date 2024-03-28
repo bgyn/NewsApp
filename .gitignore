@@ -43,3 +43,4 @@ app.*.map.json
 /android/app/release
 
 /lib/core/secrets
+/lib/model/fake_model.dart
