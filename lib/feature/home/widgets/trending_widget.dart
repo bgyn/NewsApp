@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:news_app/feature/fetch/controller/fetch_controller.dart';
 import 'package:news_app/feature/home/widgets/news_headlin_card.dart';
-import 'package:news_app/model/fake_model.dart';
-import 'package:news_app/model/news_model.dart';
 
 class TrendingWidget extends ConsumerWidget {
-  TrendingWidget({super.key});
-  final data = NewsModel.fromJson(fakeData);
+  const TrendingWidget({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -35,15 +33,28 @@ class TrendingWidget extends ConsumerWidget {
           ],
         ),
         SizedBox(
-          height: 250,
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: 4,
-            itemBuilder: (BuildContext context, int index) {
-              return const NewsHeadlineCard();
-            },
-          ),
-        )
+            height: 250,
+            child: ref.watch(trendingNewsProvider).when(
+                data: (data) {
+                  return ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: data.articles!.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return NewsHeadlineCard(
+                          imageUrl: data.articles![index].urlToImage.toString(),
+                          title: data.articles![index].title.toString(),
+                          publishedAt:
+                              data.articles![index].publishedAt.toString(),
+                          sourceName:
+                              data.articles![index].source!.name.toString());
+                    },
+                  );
+                },
+                error: (error, errorstack) {
+                  return Text(error.toString());
+                },
+                loading: () =>
+                    const Center(child: CircularProgressIndicator())))
       ],
     );
   }

@@ -11,6 +11,11 @@ final trendingNewsProvider = FutureProvider.autoDispose((ref) {
   return fetchController.fetchTrendingNews();
 });
 
+final categoryNewsProvider = FutureProvider.autoDispose((ref) {
+  final fetchController = ref.watch(fetchControllerProvider.notifier);
+  return fetchController.fetchCategoryNews();
+});
+
 class FetchController extends StateNotifier {
   final FetchRepository _fetchRepository;
   FetchController({required FetchRepository fetchRepository})
@@ -19,5 +24,9 @@ class FetchController extends StateNotifier {
 
   Future<NewsModel> fetchTrendingNews() async {
     return _fetchRepository.fetchTrendingNews();
+  }
+
+  Future<NewsModel> fetchCategoryNews() async {
+    return _fetchRepository.fetchCategoryNews();
   }
 }

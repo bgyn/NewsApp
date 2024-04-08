@@ -2,18 +2,24 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/model/fake_model.dart';
-import 'package:news_app/model/news_model.dart';
 import 'package:news_app/theme/custom_theme.dart';
 
 class NewsHeadlineCard extends ConsumerWidget {
-  const NewsHeadlineCard({super.key});
+  final String imageUrl;
+  final String sourceName;
+  final String title;
+  final String publishedAt;
+  const NewsHeadlineCard(
+      {super.key,
+      required this.imageUrl,
+      required this.title,
+      required this.publishedAt,
+      required this.sourceName});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final width = MediaQuery.of(context).size.width * 1;
     final height = MediaQuery.of(context).size.height * 1;
-    final data = NewsModel.fromJson(fakeData);
     final format = DateFormat("MMMM dd,yyyy");
     return Container(
       margin: const EdgeInsets.only(right: 10),
@@ -27,7 +33,7 @@ class NewsHeadlineCard extends ConsumerWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: CachedNetworkImage(
-              imageUrl: data.articles![2].urlToImage.toString(),
+              imageUrl: imageUrl,
               fit: BoxFit.cover,
               width: width,
               height: height * 0.2,
@@ -40,7 +46,7 @@ class NewsHeadlineCard extends ConsumerWidget {
             height: 5,
           ),
           Text(
-            "${data.articles![2].title}",
+            title,
             maxLines: 1,
             style: Theme.of(context).textTheme.titleMedium,
           ),
@@ -51,15 +57,14 @@ class NewsHeadlineCard extends ConsumerWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${data.articles![2].source!.name}",
+                sourceName,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w600,
                     fontSize: 13,
                     color: colors(context).color2),
               ),
               Text(
-                format.format(
-                    DateTime.parse(data.articles![2].publishedAt.toString())),
+                format.format(DateTime.parse(publishedAt)),
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w400,
                     fontSize: 13,

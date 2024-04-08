@@ -22,4 +22,19 @@ class FetchRepository {
       throw Exception("Failed to fetch. Please check your internet connection");
     }
   }
+
+  Future<NewsModel> fetchCategoryNews() async {
+    String url =
+        "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=$_apiKey";
+    try {
+      final response = await Dio().get(url);
+      if (response.statusCode == 200) {
+        return NewsModel.fromJson(response.data);
+      } else {
+        throw Exception("Failed to fetch data");
+      }
+    } catch (e) {
+      throw Exception("Failed to fetch. Please check your internet connection");
+    }
+  }
 }
