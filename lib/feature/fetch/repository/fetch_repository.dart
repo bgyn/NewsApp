@@ -23,9 +23,9 @@ class FetchRepository {
     }
   }
 
-  Future<NewsModel> fetchCategoryNews() async {
+  Future<NewsModel> fetchCategoryNews(String query) async {
     String url =
-        "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=$_apiKey";
+        "https://newsapi.org/v2/everything?q=$query&from=2024-03-09&sortBy=publishedAt&apiKey=$_apiKey";
     try {
       final response = await Dio().get(url);
       if (response.statusCode == 200) {

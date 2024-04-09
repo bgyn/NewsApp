@@ -37,6 +37,7 @@ class TrendingWidget extends ConsumerWidget {
             child: ref.watch(trendingNewsProvider).when(
                 data: (data) {
                   return ListView.builder(
+                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount: data.articles!.length,
                     itemBuilder: (BuildContext context, int index) {
