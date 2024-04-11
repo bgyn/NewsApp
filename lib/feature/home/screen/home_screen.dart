@@ -112,6 +112,8 @@ class HomeScreen extends ConsumerWidget {
                                       .toString(),
                                   publishedAt: data.articles![index].publishedAt
                                       .toString(),
+                                  description: data.articles![index].description
+                                      .toString(),
                                 );
                               }
                               return const SizedBox();

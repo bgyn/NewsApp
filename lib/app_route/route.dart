@@ -6,6 +6,7 @@ import 'package:news_app/feature/auth/controller/auth_controller.dart';
 import 'package:news_app/feature/auth/screen/sigin_screen.dart';
 import 'package:news_app/feature/auth/screen/singnup_screen.dart';
 import 'package:news_app/feature/home/screen/home_screen.dart';
+import 'package:news_app/feature/news/screens/detail_news_screen.dart';
 import 'package:news_app/feature/onboarding/screen/onboarding_screen.dart';
 import 'package:news_app/feature/root/screen/root_screen.dart';
 import 'package:news_app/feature/setting/screen/setting_screen.dart';
@@ -93,5 +94,25 @@ class RouterNotifier extends ChangeNotifier {
             builder: (context, state) {
               return const SettingScreen();
             }),
+        GoRoute(
+            name: 'detailScreen',
+            path:
+                '/detailScreen/:title/:imageUrl/:description/:publishedAt/:authorName/:sourceName',
+            builder: (context, state) {
+              final title = state.pathParameters['title'];
+              final imageUrl = state.pathParameters['imageUrl'];
+              final description = state.pathParameters['description'];
+              final publishedAt = state.pathParameters['publishedAt'];
+              final authorName = state.pathParameters['authorName'];
+              final sourcename = state.pathParameters['sourceName'];
+              return DetailNewsScreen(
+                title: title.toString(),
+                publishedAt: publishedAt.toString(),
+                description: description.toString(),
+                imageUrl: imageUrl.toString(),
+                authorName: authorName.toString(),
+                sourceName: sourcename.toString(),
+              );
+            })
       ];
 }
