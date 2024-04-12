@@ -44,7 +44,7 @@ class TrendingWidget extends ConsumerWidget {
                       return NewsHeadlineCard(
                         imageUrl: data.articles![index].urlToImage.toString(),
                         title: data.articles![index].title.toString(),
-                        publishedAt:
+                        publishedAt: 
                             data.articles![index].publishedAt.toString(),
                         sourceName:
                             data.articles![index].source!.name.toString(),
