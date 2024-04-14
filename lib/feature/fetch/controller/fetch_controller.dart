@@ -16,6 +16,10 @@ final categoryNewsProvider =
   final fetchController = ref.watch(fetchControllerProvider.notifier);
   return fetchController.fetchCategoryNews(arg);
 });
+final searchNewsProvider = FutureProvider.autoDispose.family((ref, String arg) {
+  final fetchController = ref.watch(fetchControllerProvider.notifier);
+  return fetchController.searchNews(arg);
+});
 
 class FetchController extends StateNotifier {
   final FetchRepository _fetchRepository;
@@ -29,5 +33,9 @@ class FetchController extends StateNotifier {
 
   Future<NewsModel> fetchCategoryNews(String query) async {
     return _fetchRepository.fetchCategoryNews(query.toLowerCase());
+  }
+
+  Future<NewsModel> searchNews(String query) async {
+    return _fetchRepository.searchNews(query.toLowerCase());
   }
 }
