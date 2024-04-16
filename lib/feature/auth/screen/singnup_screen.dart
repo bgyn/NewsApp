@@ -15,7 +15,7 @@ class SignupScreen extends ConsumerWidget {
   final _passwordController = TextEditingController();
 
   void navigateToSignIn(BuildContext context) {
-    GoRouter.of(context).pushReplacement('/sigin');
+    GoRouter.of(context).pushReplacement('/signin');
   }
 
   @override

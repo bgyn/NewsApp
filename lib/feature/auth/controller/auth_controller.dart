@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/core/common/custom_snackbar.dart';
 import 'package:news_app/feature/auth/repository/auth_repository.dart';
@@ -80,6 +81,9 @@ class AuthController extends StateNotifier<bool> {
   }
 
   Stream<UserModel?> getUserInfo(String uid) {
+    if (kDebugMode) {
+      print("User id : $uid");
+    }
     return _authRepository.getUserData(uid);
   }
 }

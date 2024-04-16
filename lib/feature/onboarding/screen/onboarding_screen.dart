@@ -142,7 +142,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                           });
                         } else {
                           SharedUtility().setOnBoarding();
-                          GoRouter.of(context).pushReplacement('/sigin');
+                          GoRouter.of(context).pushReplacement('/signin');
                         }
                       },
                       child: Text(

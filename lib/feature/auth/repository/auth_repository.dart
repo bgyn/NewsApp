@@ -46,7 +46,10 @@ class AuthRepository {
     return _user
         .doc(uid)
         .snapshots()
-        .map((e) => UserModel.fromMap(e.data() as Map<String, dynamic>));
+        .map((e) => UserModel.fromMap(e.data() as Map<String, dynamic>))
+        .handleError((error) {
+      print(error.toString());
+    });
   }
 
   //sigin with google

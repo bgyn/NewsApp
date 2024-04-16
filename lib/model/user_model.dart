@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 
 class UserModel {
@@ -63,19 +62,20 @@ class UserModel {
 
   factory UserModel.fromMap(Map<String, dynamic> map) {
     return UserModel(
-        uid: map['uid'] as String,
-        userName: map['userName'] as String,
-        fullName: map['fullName'] as String,
-        email: map['email'] as String,
-        phoneNumber:
-            map['phoneNumber'] != null ? map['phoneNumber'] as int : null,
-        profilePic:
-            map['profilePic'] != null ? map['profilePic'] as String : null,
-        bio: map['bio'] != null ? map['bio'] as String : null,
-        followers: List<String>.from((map['followers'] as List<String>)),
-        following: List<String>.from(
-          (map['following'] as List<String>),
-        ));
+      uid: map['uid'] as String,
+      userName: map['userName'] as String,
+      fullName: map['fullName'] as String,
+      email: map['email'] as String,
+      phoneNumber:
+          map['phoneNumber'] != null ? map['phoneNumber'] as int : null,
+      profilePic:
+          map['profilePic'] != null ? map['profilePic'] as String : null,
+      bio: map['bio'] != null ? map['bio'] as String : null,
+      followers:
+          (map['followers'] as List<dynamic>).map((e) => e.toString()).toList(),
+      following:
+          (map['following'] as List<dynamic>).map((e) => e.toString()).toList(),
+    );
   }
 
   @override
