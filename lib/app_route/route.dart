@@ -40,7 +40,7 @@ class RouterNotifier extends ChangeNotifier {
     if (authState && isLogginIn) {
       return '/';
     }
-    if (!authState) {
+    if (!authState && isLogginIn) {
       return '/sigin';
     }
     return null;
