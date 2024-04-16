@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/app_route/route.dart';
@@ -33,14 +32,8 @@ class MyApp extends ConsumerStatefulWidget {
 class _MyAppState extends ConsumerState<MyApp> {
   UserModel? userModel;
   Future<UserModel?> getData(WidgetRef ref, String uid) async {
-    if (kDebugMode) {
-      print("User id : $uid");
-    }
     userModel =
         await ref.watch(authControllerProvider.notifier).getUserInfo(uid).first;
-    if (kDebugMode) {
-      print("AFter that line ");
-    }
     ref.read(userProvider.notifier).update((state) => userModel);
     return userModel;
   }
