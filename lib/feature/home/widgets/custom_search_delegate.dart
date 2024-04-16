@@ -14,7 +14,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = "";
         },
-        icon: Icon(Icons.clear),
+        icon: const Icon(Icons.clear),
       ),
     ];
   }
@@ -23,7 +23,7 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () => GoRouter.of(context).pop(),
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
     );
   }
 
