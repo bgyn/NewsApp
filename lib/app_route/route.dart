@@ -27,13 +27,16 @@ final routerProvider = Provider<GoRouter>((ref) {
 class RouterNotifier extends ChangeNotifier {
   final Ref _ref;
   RouterNotifier({required Ref ref}) : _ref = ref {
-    _ref.listen(authStateChangeProvider, (_, __) => notifyListeners());
+    _ref.listen(authStateChangeProvider, (_, __) {
+      notifyListeners();
+    });
   }
 
   String? _redirectLogic(GoRouterState state) {
     final bool authState =
         _ref.watch(FirebaseProvider.firebaseAuthProvider).currentUser != null;
-    final bool isLogginIn = state.fullPath == '/sigin';
+    final bool isLogginIn =
+        state.fullPath == '/signin' || state.fullPath == '/signup';
     if (state.fullPath == '/splash') {
       return null;
     }
@@ -41,7 +44,13 @@ class RouterNotifier extends ChangeNotifier {
       return '/';
     }
     if (!authState && isLogginIn) {
-      return '/sigin';
+      return '/signin';
+    }
+    if (authState && !isLogginIn) {
+      return null;
+    }
+    if (!authState && !isLogginIn) {
+      return '/signin';
     }
     return null;
   }
@@ -76,7 +85,7 @@ class RouterNotifier extends ChangeNotifier {
             }),
         GoRoute(
           name: 'signin',
-          path: '/sigin',
+          path: '/signin',
           builder: (context, state) {
             return SigninScreen();
           },
