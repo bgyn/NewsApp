@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intl/intl.dart';
@@ -103,15 +105,22 @@ class NewsCard extends ConsumerWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        sourceName,
-                        style:
-                            Theme.of(context).textTheme.labelMedium?.copyWith(
-                                  color: colors(context).color2,
-                                ),
+                      SizedBox(
+                        width: width * 0.3,
+                        child: Text(
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          sourceName,
+                          style:
+                              Theme.of(context).textTheme.labelMedium?.copyWith(
+                                    color: colors(context).color2,
+                                  ),
+                        ),
                       ),
                       Text(
                         format.format(DateTime.parse(publishedAt)),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style:
                             Theme.of(context).textTheme.labelMedium?.copyWith(
                                   color: colors(context).color2,
