@@ -30,8 +30,10 @@ class ProfileScreen extends ConsumerWidget {
                         ),
                       ))
                   : SizedBox(
-                      height: height * 0.12,
+                      height: height * 0.13,
+                      width: width * 0.3,
                       child: ClipRRect(
+                        clipBehavior: Clip.hardEdge,
                         borderRadius: BorderRadius.circular(100),
                         child: CachedNetworkImage(
                           imageUrl: user.profilePic!,

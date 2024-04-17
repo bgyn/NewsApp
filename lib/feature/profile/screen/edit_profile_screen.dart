@@ -105,7 +105,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                               children: [
                                 profileFile != null
                                     ? SizedBox(
-                                        height: height * 0.15,
+                                        height: height * 0.13,
                                         width: width * 0.3,
                                         child: ClipRRect(
                                           clipBehavior: Clip.hardEdge,
@@ -126,17 +126,16 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                             borderRadius:
                                                 BorderRadius.circular(100),
                                             child: SizedBox(
-                                                height: height * 0.15,
-                                                child: SizedBox(
-                                                  width: width * 0.3,
-                                                  child: Center(
-                                                    child: Image.asset(
-                                                        "assets/images/photo.png"),
-                                                  ),
+                                                height: height * 0.13,
+                                                width: width * 0.3,
+                                                child: Center(
+                                                  child: Image.asset(
+                                                      "assets/images/photo.png"),
                                                 )),
                                           )
                                         : SizedBox(
-                                            height: height * 0.15,
+                                            height: height * 0.13,
+                                            width: width * 0.3,
                                             child: ClipRRect(
                                               clipBehavior: Clip.hardEdge,
                                               borderRadius:
