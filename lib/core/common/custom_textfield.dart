@@ -3,14 +3,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class CustomTextField extends ConsumerWidget {
   final TextEditingController _controller;
-  final bool _isObscure;
+  final bool? _isObscure;
   final obscureProvider = StateProvider<bool>((ref) => true);
   CustomTextField(
-      {super.key,
-      required TextEditingController controller,
-      required bool isObscure})
+      {super.key, required TextEditingController controller, bool? isObscure})
       : _controller = controller,
-        _isObscure = isObscure;
+        _isObscure = isObscure ?? false;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +16,7 @@ class CustomTextField extends ConsumerWidget {
     return TextField(
       style: Theme.of(context).textTheme.labelSmall?.copyWith(fontSize: 14),
       controller: _controller,
-      obscureText: _isObscure ? hidePassword : false,
+      obscureText: _isObscure! ? hidePassword : false,
       decoration: InputDecoration(
         suffixIcon: _isObscure
             ? IconButton(

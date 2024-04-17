@@ -8,6 +8,7 @@ import 'package:news_app/feature/auth/screen/singnup_screen.dart';
 import 'package:news_app/feature/home/screen/home_screen.dart';
 import 'package:news_app/feature/news/screens/detail_news_screen.dart';
 import 'package:news_app/feature/onboarding/screen/onboarding_screen.dart';
+import 'package:news_app/feature/profile/screen/edit_profile_screen.dart';
 import 'package:news_app/feature/root/screen/root_screen.dart';
 import 'package:news_app/feature/setting/screen/setting_screen.dart';
 import 'package:news_app/feature/splash/screen/splash_screen.dart';
@@ -119,6 +120,12 @@ final loginRoute = GoRouter(
             authorName: authorName.toString(),
             sourceName: sourcename.toString(),
           );
+        }),
+    GoRoute(
+        name: 'edit-profile',
+        path: '/profile/edit-profile',
+        builder: (context, state) {
+          return EditProfileScreen();
         })
   ],
 );

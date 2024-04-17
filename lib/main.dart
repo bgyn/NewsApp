@@ -59,7 +59,7 @@ class _MyAppState extends ConsumerState<MyApp> {
                     routeInformationParser: snapshot.hasData
                         ? loginRoute.routeInformationParser
                         : logoutRoute.routeInformationParser,
-                    routeInformationProvider: snapshot.hasData
+                    routeInformationProvider: snapshot.hasData 
                         ? loginRoute.routeInformationProvider
                         : logoutRoute.routeInformationProvider,
                     routerDelegate: snapshot.hasData
