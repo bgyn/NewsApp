@@ -125,7 +125,7 @@ final loginRoute = GoRouter(
         name: 'edit-profile',
         path: '/profile/edit-profile',
         builder: (context, state) {
-          return EditProfileScreen();
+          return const EditProfileScreen();
         })
   ],
 );
