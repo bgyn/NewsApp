@@ -64,18 +64,27 @@ class NewsHeadlineCard extends ConsumerWidget {
             const SizedBox(
               height: 5,
             ),
-            ClipRRect(
-              borderRadius: BorderRadius.circular(10),
-              child: CachedNetworkImage(
-                imageUrl: imageUrl,
-                fit: BoxFit.cover,
-                width: width,
-                height: height * 0.2,
-                placeholder: (context, url) => const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-            ),
+            imageUrl == 'null'
+                ? ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: SizedBox(
+                      height: height * 0.2,
+                      child: Center(
+                        child: Image.asset("assets/images/photo.png"),
+                      ),
+                    ))
+                : ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      fit: BoxFit.cover,
+                      width: width,
+                      height: height * 0.2,
+                      placeholder: (context, url) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                  ),
             const SizedBox(
               height: 5,
             ),

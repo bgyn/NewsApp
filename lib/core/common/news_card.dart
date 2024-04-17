@@ -62,20 +62,29 @@ class NewsCard extends ConsumerWidget {
         width: width,
         child: Row(
           children: [
-            SizedBox(
-              height: height * 0.12,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  fit: BoxFit.cover,
-                  width: width * 0.3,
-                  placeholder: (context, url) => const Center(
-                    child: CircularProgressIndicator(),
+            imageUrl == 'null'
+                ? SizedBox(
+                    height: height * 0.12,
+                    child: SizedBox(
+                      width: width * 0.3,
+                      child: Center(
+                        child: Image.asset("assets/images/photo.png"),
+                      ),
+                    ))
+                : SizedBox(
+                    height: height * 0.12,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(10),
+                      child: CachedNetworkImage(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.cover,
+                        width: width * 0.3,
+                        placeholder: (context, url) => const Center(
+                          child: CircularProgressIndicator(),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-            ),
             const SizedBox(
               width: 5,
             ),
