@@ -71,7 +71,7 @@ class ProfileScreen extends ConsumerWidget {
             ],
           ),
           const SizedBox(
-            height: 10,
+            height: 20,
           ),
           Text(
             user.fullName,
@@ -80,6 +80,9 @@ class ProfileScreen extends ConsumerWidget {
           Text(
             user.bio == null ? "" : user.bio.toString(),
             style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          const SizedBox(
+            height: 20,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
