@@ -20,13 +20,18 @@ class ProfileScreen extends ConsumerWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              user!.profilePic == 'null'
+              user?.profilePic == null
                   ? SizedBox(
                       height: height * 0.12,
-                      child: SizedBox(
-                        width: width * 0.3,
+                      width: width * 0.3,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(5),
+                        clipBehavior: Clip.hardEdge,
                         child: Center(
-                          child: Image.asset("assets/images/photo.png"),
+                          child: Image.asset(
+                            "assets/images/photo.png",
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ))
                   : SizedBox(
@@ -36,7 +41,7 @@ class ProfileScreen extends ConsumerWidget {
                         clipBehavior: Clip.hardEdge,
                         borderRadius: BorderRadius.circular(100),
                         child: CachedNetworkImage(
-                          imageUrl: user.profilePic!,
+                          imageUrl: user!.profilePic!,
                           fit: BoxFit.cover,
                           placeholder: (context, url) => const Center(
                             child: CircularProgressIndicator(),
@@ -47,7 +52,7 @@ class ProfileScreen extends ConsumerWidget {
               Column(
                 children: [
                   Text(
-                    user.followers.length.toString(),
+                    user!.followers.length.toString(),
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   Text(

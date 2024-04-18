@@ -120,7 +120,7 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                             ),
                                           ),
                                         ))
-                                    : user!.profilePic == 'null'
+                                    : user!.profilePic == null
                                         ? ClipRRect(
                                             clipBehavior: Clip.hardEdge,
                                             borderRadius:
@@ -130,7 +130,9 @@ class _EditProfileScreenState extends ConsumerState<EditProfileScreen> {
                                                 width: width * 0.3,
                                                 child: Center(
                                                   child: Image.asset(
-                                                      "assets/images/photo.png"),
+                                                    "assets/images/photo.png",
+                                                    fit: BoxFit.cover,
+                                                  ),
                                                 )),
                                           )
                                         : SizedBox(
