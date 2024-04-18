@@ -23,6 +23,7 @@ class DetailNewsScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final height = MediaQuery.of(context).size.height * 1;
+    final width = MediaQuery.of(context).size.width * 1;
     final format = DateFormat("MMMM dd,yyyy");
     return Scaffold(
       appBar: AppBar(
@@ -57,12 +58,15 @@ class DetailNewsScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-                Text(
-                  authorName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
+                SizedBox(
+                  width: width * 0.4,
+                  child: Text(
+                    authorName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                )
               ],
             ),
             const SizedBox(
