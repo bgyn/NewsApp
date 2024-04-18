@@ -3,10 +3,18 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/common/news_card.dart';
 import 'package:news_app/feature/fetch/controller/fetch_controller.dart';
+import 'package:news_app/theme/custom_theme.dart';
 
 class CustomSearchDelegate extends SearchDelegate {
   final WidgetRef ref;
   CustomSearchDelegate({required this.ref});
+
+  @override
+  ThemeData appBarTheme(BuildContext context) {
+    return super.appBarTheme(context).copyWith(
+        appBarTheme: AppBarTheme(backgroundColor: colors(context).color5));
+  }
+
   @override
   List<Widget>? buildActions(BuildContext context) {
     return [
@@ -14,7 +22,10 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           query = "";
         },
-        icon: const Icon(Icons.clear),
+        icon: Icon(
+          Icons.clear,
+          color: colors(context).color3,
+        ),
       ),
     ];
   }
@@ -23,7 +34,10 @@ class CustomSearchDelegate extends SearchDelegate {
   Widget buildLeading(BuildContext context) {
     return IconButton(
       onPressed: () => GoRouter.of(context).pop(),
-      icon: const Icon(Icons.arrow_back),
+      icon: Icon(
+        Icons.arrow_back,
+        color: colors(context).color3,
+      ),
     );
   }
 
