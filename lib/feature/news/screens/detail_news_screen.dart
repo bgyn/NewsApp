@@ -63,6 +63,7 @@ class DetailNewsScreen extends ConsumerWidget {
                   child: Text(
                     authorName,
                     maxLines: 1,
+                    textAlign: TextAlign.end,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
