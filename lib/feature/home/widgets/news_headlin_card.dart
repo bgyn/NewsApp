@@ -55,8 +55,7 @@ class NewsHeadlineCard extends ConsumerWidget {
         soruceName: sourceName,
         title: title,
       ),
-      child: Container(
-        margin: const EdgeInsets.only(right: 10),
+      child: SizedBox(
         width: width * 0.8,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

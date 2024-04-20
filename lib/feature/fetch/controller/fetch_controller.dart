@@ -16,9 +16,15 @@ final categoryNewsProvider =
   final fetchController = ref.watch(fetchControllerProvider.notifier);
   return fetchController.fetchCategoryNews(arg);
 });
+
 final searchNewsProvider = FutureProvider.autoDispose.family((ref, String arg) {
   final fetchController = ref.watch(fetchControllerProvider.notifier);
   return fetchController.searchNews(arg);
+});
+
+final popularNewsProvider = FutureProvider.autoDispose((ref) {
+  final fetchController = ref.watch(fetchControllerProvider.notifier);
+  return fetchController.fetchPopularNews();
 });
 
 class FetchController extends StateNotifier {
@@ -28,14 +34,18 @@ class FetchController extends StateNotifier {
         super(null);
 
   Future<NewsModel> fetchTrendingNews() async {
-    return _fetchRepository.fetchTrendingNews();
+    return await _fetchRepository.fetchTrendingNews();
   }
 
   Future<NewsModel> fetchCategoryNews(String query) async {
-    return _fetchRepository.fetchCategoryNews(query.toLowerCase());
+    return await _fetchRepository.fetchCategoryNews(query.toLowerCase());
   }
 
   Future<NewsModel> searchNews(String query) async {
-    return _fetchRepository.searchNews(query.toLowerCase());
+    return await _fetchRepository.searchNews(query.toLowerCase());
+  }
+
+  Future<NewsModel> fetchPopularNews() async {
+    return await _fetchRepository.fetchPopularNews();
   }
 }

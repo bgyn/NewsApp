@@ -41,16 +41,19 @@ class TrendingWidget extends ConsumerWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: data.articles!.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return NewsHeadlineCard(
-                        imageUrl: data.articles![index].urlToImage.toString(),
-                        title: data.articles![index].title.toString(),
-                        publishedAt: 
-                            data.articles![index].publishedAt.toString(),
-                        sourceName:
-                            data.articles![index].source!.name.toString(),
-                        authorName: data.articles![index].author.toString(),
-                        description:
-                            data.articles![index].description.toString(),
+                      return Container(
+                        margin: const EdgeInsets.only(right: 10),
+                        child: NewsHeadlineCard(
+                          imageUrl: data.articles![index].urlToImage.toString(),
+                          title: data.articles![index].title.toString(),
+                          publishedAt:
+                              data.articles![index].publishedAt.toString(),
+                          sourceName:
+                              data.articles![index].source!.name.toString(),
+                          authorName: data.articles![index].author.toString(),
+                          description:
+                              data.articles![index].description.toString(),
+                        ),
                       );
                     },
                   );
