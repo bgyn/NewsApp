@@ -8,7 +8,7 @@ final fetchRepositoryProvider = Provider((ref) => FetchRepository());
 
 class FetchRepository {
   FetchRepository();
-  static const _apiKey = ApiKeys.apikey;
+  static const _apiKey = ApiKeys.apiKey;
 
   String _getDate() {
     DateTime now = DateTime.now();
