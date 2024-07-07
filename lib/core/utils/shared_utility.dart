@@ -55,9 +55,8 @@ class SharedUtility {
     await _prefs!.setBool(_rememberMe, value);
   }
 
-  String getEmail() {
+  String? getEmail() {
     final email = _prefs!.getString(_userEmail);
-    if (email == null) return '';
     return email;
   }
 

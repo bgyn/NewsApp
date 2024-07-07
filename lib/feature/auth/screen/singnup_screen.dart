@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:news_app/core/common/custom_textfield.dart';
-import 'package:news_app/core/utils/shared_utility.dart';
+import 'package:news_app/core/utils/preference.dart';
 import 'package:news_app/feature/auth/controller/auth_controller.dart';
 import 'package:news_app/feature/auth/widgets/custom_button.dart';
 import 'package:news_app/core/common/required_text.dart';
@@ -20,7 +20,6 @@ class SignupScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    _emailController.text = SharedUtility().getEmail();
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -68,12 +67,18 @@ class SignupScreen extends ConsumerWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Checkbox(
-                          value: true,
-                          onChanged: (value) {},
-                          materialTapTargetSize:
-                              MaterialTapTargetSize.shrinkWrap,
-                        ),
+                        Consumer(builder: (context, ref, child) {
+                          return Checkbox(
+                            value: ref.watch(preferenceNotifierProvider),
+                            onChanged: (value) {
+                              ref
+                                  .read(preferenceNotifierProvider.notifier)
+                                  .setPreferenceRemeberMe(value!);
+                            },
+                            materialTapTargetSize:
+                                MaterialTapTargetSize.shrinkWrap,
+                          );
+                        }),
                         Text(
                           "Remember me",
                           style: Theme.of(context)
@@ -98,12 +103,19 @@ class SignupScreen extends ConsumerWidget {
                       ),
                       backgroundColor: colors(context).color1,
                     ),
-                    onPressed: () => ref
-                        .read(authControllerProvider.notifier)
-                        .signUpWithEmailPassword(
-                          email: _emailController.text,
-                          password: _passwordController.text,
-                        ),
+                    onPressed: () {
+                      ref.read(preferenceNotifierProvider)
+                          ? ref
+                              .read(preferenceNotifierProvider.notifier)
+                              .setEmail(_emailController.text)
+                          : null;
+                      ref
+                          .read(authControllerProvider.notifier)
+                          .signUpWithEmailPassword(
+                            email: _emailController.text,
+                            password: _passwordController.text,
+                          );
+                    },
                     child: Text(
                       "Login",
                       style: Theme.of(context)
