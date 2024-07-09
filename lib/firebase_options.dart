@@ -63,6 +63,9 @@ class DefaultFirebaseOptions {
     messagingSenderId: '544307454373',
     projectId: 'newsapp-472fc',
     storageBucket: 'newsapp-472fc.appspot.com',
+    androidClientId: '544307454373-i4n51lt43tvtmih6q8k1lfgn33g0eu3k.apps.googleusercontent.com',
+    iosClientId: '544307454373-nni7q45pu283oikgbbu3920opb3v572q.apps.googleusercontent.com',
     iosBundleId: 'com.example.newsApp',
   );
+
 }
