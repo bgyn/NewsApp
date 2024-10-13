@@ -1,14 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
-import 'package:news_app/core/secrets/api_key.dart';
+// import 'package:news_app/core/secrets/api_key.dart';
 import 'package:news_app/model/news_model.dart';
 
 final fetchRepositoryProvider = Provider((ref) => FetchRepository());
 
 class FetchRepository {
   FetchRepository();
-  static const _apiKey = ApiKeys.apiKey;
+  static const _apiKey = "l;aksjdfl";
 
   String _getDate() {
     DateTime now = DateTime.now();
